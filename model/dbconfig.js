@@ -3,6 +3,6 @@ var options = {
     port:3306,
     user:'root',
     password:'root',
-    database:'compangdb'
+    database:'qiqu'
 };
 module.exports.options = options;
