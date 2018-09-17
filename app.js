@@ -6,8 +6,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
-const index = require('./routes/indexApi/index')
-const users = require('./routes/indexApi/users')
+const index = require('./routes/index')
 const strateRouter=require('./routes/strategyApi/strategy')
 const strDetailsRouter=require('./routes/strategyApi/strateDetails')
 const infoRouter=require('./routes/informationApi/information')
@@ -26,7 +25,7 @@ app.use(require('koa-static')(__dirname + '/public'))
 app.use(views(__dirname + '/views', {
     map:{html:'ejs'}
 }))
-
+ho
 // logger
 app.use(async (ctx, next) => {
     const start = new Date()
@@ -37,7 +36,6 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
 app.use(strateRouter.routes(),strateRouter.allowedMethods())
 app.use(strDetailsRouter.routes(),strDetailsRouter.allowedMethods())
 app.use(infoRouter.routes(),infoDetailsRouter.allowedMethods())
