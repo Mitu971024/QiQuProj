@@ -1,23 +1,25 @@
-var mysql = require('mysql');
-var dbconfig = require('../model/dbconfig');
+//通用数据操作对象
+const mysql = require('mysql');
+const config = require('../model/dbconfig');
+//创建数据库连接池
+const pool = mysql.createPool(config);
 
-function DAO(sql,sqlparams,callback) {
-    var connection = mysql.createConnection(dbconfig.options)
-    connection.connect(function (err) {
-        if (err){
-            console.log('数据库连接失败！' + err.message);
-            callback(null);
-            return;
-        }
-        connection.query(sql,sqlparams,function (e,data) {
+function query(sql,values){
+    return new Promise((resolve,reject)=>{
+        pool.getConnection(function(err,connection){
             if (err){
-                console.log('数据库连接失败！' + e.message);
-                callback(null);
-                return;
+                reject(err)
+            }else{
+                connection.query(sql,values,(err,rows)=>{
+                    if (err){
+                        reject(err)
+                    }else{
+                        resolve(rows);
+                    }
+                    connection.release();
+                })
             }
-            callback(data);
-            connection.end();
         })
     })
 }
-module.exports.DB = DAO;
+module.exports = query;
