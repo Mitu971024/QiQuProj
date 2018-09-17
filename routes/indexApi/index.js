@@ -1,9 +1,7 @@
 const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
+  ctx.body = '我是首页'
 })
 
 router.get('/string', async (ctx, next) => {
