@@ -2,7 +2,7 @@
 const mysql = require('mysql');
 const config = require('../model/dbconfig');
 //创建数据库连接池
-const pool = mysql.createPool(config);
+const pool = mysql.createPool(config.options);
 
 function query(sql,values){
     return new Promise((resolve,reject)=>{

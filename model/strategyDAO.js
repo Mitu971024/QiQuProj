@@ -2,9 +2,9 @@ const DAO=require('../model/DAO');
 
 class DB{
     //获取全部数据
-    getStrategy(){
+    getStrategy(type){
         return DAO('SELECT sTitle,sImg,sIntro,sTime,sFrom,sType,smCheck FROM strategy ' +
-            'group by sType order by sTime DESC,smCheck desc',[]);
+            'where sType=?  order by sTime DESC,smCheck desc',[type]);
     }
 
     //获取详情内容
