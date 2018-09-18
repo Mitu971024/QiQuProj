@@ -1,16 +1,12 @@
 const Koa = require('koa')
 const app = new Koa()
-const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
 const index = require('./routes/index')
-const strateRouter=require('./routes/strategyApi/strategy')
-const strDetailsRouter=require('./routes/strategyApi/strateDetails')
-const infoRouter=require('./routes/informationApi/information')
-const infoDetailsRouter=require('./routes/informationApi/infoDetails')
+
 // error handler
 onerror(app)
 
@@ -22,10 +18,7 @@ app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
-app.use(views(__dirname + '/views', {
-    map:{html:'ejs'}
-}))
-ho
+
 // logger
 app.use(async (ctx, next) => {
     const start = new Date()
@@ -36,10 +29,6 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(strateRouter.routes(),strateRouter.allowedMethods())
-app.use(strDetailsRouter.routes(),strDetailsRouter.allowedMethods())
-app.use(infoRouter.routes(),infoDetailsRouter.allowedMethods())
-app.use(infoDetailsRouter.routes(),infoDetailsRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

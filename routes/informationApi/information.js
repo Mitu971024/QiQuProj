@@ -1,18 +1,24 @@
 const router = require('koa-router')();
 const informationController=require('../../controllers/informationController')
-router.prefix('/information')
+router.prefix('/')
 
 // const informationDAO=require('../../model/informationDAO');
 
-router.get('/:zType', async (ctx, next) => {
-    // try{
-    //     let jsondata = await informationDAO.getInformation(ctx.params.zType);
-    //     ctx.set('content-type','application/json')
-    //      ctx.body={"code": 200, "message": "ok", data:jsondata};
-    // }catch(err){
-    //      ctx.body ={"code": 500, "message": err.toString(), data:[]};
-    // }
-    await informationController.getInformation(ctx,next)
+router.get('/hot', async (ctx, next) => {
+    await informationController.gethotInfo(ctx,next)
 })
+
+router.get('/today', async (ctx, next) => {
+    await informationController.gettodayInfo(ctx,next)
+})
+
+router.get('/news', async (ctx, next) => {
+    await informationController.getnewsInfo(ctx,next)
+})
+
+router.get('/other', async (ctx, next) => {
+    await informationController.getotherInfo(ctx,next)
+})
+
 
 module.exports=router;
