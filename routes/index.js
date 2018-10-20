@@ -10,10 +10,11 @@ const strDetailsRouter=require('../routes/strategyApi/strateDetails')
 const infoRouter=require('../routes/informationApi/information')
 const infoDetailsRouter=require('../routes/informationApi/infoDetails')
 
+
 router.use('/home',home.routes())
 router.use('/settings',settings.routes())
 router.use('/users',users.routes())
-router.use('/admin',users.routes())
+router.use('/admin',admin.routes())
 
 //资讯攻略使用路由
 router.use('/strategy',strateRouter.routes())
