@@ -9,7 +9,7 @@ class DB{
     getclassStrategy(){
         return DAO('call getclassstrate;',[])
     }
-    //获取推荐文章数据
+    //获取推荐文章数据..
     getrecStrategy(){
         return DAO('call getrecstrate;',[])
     }
