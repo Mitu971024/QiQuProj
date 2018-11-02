@@ -4,12 +4,22 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-
+const cors = require('koa2-cors')
 const index = require('./routes/index')
 
 // error handler
 onerror(app)
 
+app.use(cors({
+    origin: function (ctx) {
+        return 'http://10.40.4.24:8080'; //这样就能只允许 http://10.40.4.21:8080 这个域名的请求了
+    },
+    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+    maxAge: 5,
+    credentials: true,
+    allowMethods: ['GET', 'POST', 'DELETE'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}))
 // middlewares
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
