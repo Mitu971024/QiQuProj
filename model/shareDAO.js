@@ -25,7 +25,13 @@ class Database {
         return DAO('insert into reply(com_id,reply_txt,user_name,user_pic,reply_time) values(?,?,?,?,?)',
             [content.c_id,content.r_content,content.u_name,content.u_pic,content.c_time])
     }
-
+    getCard(){
+        return DAO("select * FROM cardinfos ORDER BY card_id DESC");
+    }
+    sendCard(card){
+        return DAO("INSERT into cardinfos(card_content,user_name,user_pic,card_img,card_time) VALUES(?,?,?,?,?)"
+            ,[card.txt,card.user_name,card.user_pic,card.card_images,card.n_time]);
+    }
 }
 
 module.exports = new Database();
