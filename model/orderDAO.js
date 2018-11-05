@@ -26,5 +26,8 @@ class order {
     showOrder(){
         return DAO("select DISTINCT bikedetails.cNo,orderdetails.pNo,orderdetails.oName,orderdetails.oPrice,orderdetails.oImg,orderdetails.oNum FROM orderdetails INNER JOIN myinfo on orderdetails.mId=myinfo.mId INNER JOIN bikedetails on bikedetails.cNo=orderdetails.cNo ")
     }
+    deleteOrder(del){
+        return DAO('delete from `orderdetails` where  mId=? and cNo=? ',[del.mId,del.cNo]);
+    }
 }
 module.exports = new order();

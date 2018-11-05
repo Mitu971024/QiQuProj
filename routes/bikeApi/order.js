@@ -30,4 +30,17 @@ router.post('/showorder',async(ctx,next)=>{
     }
 })
 
+router.post('/delete',async(ctx,next)=>{
+    let del = {};
+    let query=ctx.request.body;
+    del.mId=query.mId
+    del.cNo=query.cNo
+    try {
+        let data = await orderDAO.deleteOrder(del);
+        ctx.body = {"code": 200, "message": "ok", data: data}
+    } catch (err) {
+        ctx.body = {"code": 500, "message": err.toString(), data: []}
+    }
+})
+
 module.exports=router
