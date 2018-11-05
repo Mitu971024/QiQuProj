@@ -12,7 +12,7 @@ onerror(app)
 
 app.use(cors({
     origin: function (ctx) {
-        // localhost
+        // return 'http://xx.xx.x.xx:8080'; //这样就能只允许 http://xx.xx.x.xx:8080 这个域名的请求了
         return 'http://10.40.4.24:8080'; //这样就能只允许 http://10.40.4.21:8080 这个域名的请求了
     },
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
