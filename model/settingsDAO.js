@@ -18,6 +18,9 @@ class SET{
     modPwd(user){
         return DAO('update myInfo set mPassword = ? where mId = ?', [user.mPassword,user.mId])
     }
+    userPwd(user){
+        return DAO('update myInfo set mPassword = ? where mLogin = ?', [user.mPassword,user.mLogin])
+    }
     modOther(user){
         return DAO('update myInfo set mPlace = ? where mId = ?', [user.mPlace,user.mId])
     }

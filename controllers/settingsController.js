@@ -62,6 +62,21 @@ module.exports = {
             ctx.body = {"code":500,"message":err.toString(),data:[]}
         }
     },
+    userPwd:async (ctx,next)=>{
+        const hash = crypto.createHash('md5');
+        hash.update(ctx.request.body.mPassword);
+        var pwd = hash.digest('hex');
+        let user = { };
+        user.mPassword = pwd;
+        user.mLogin = ctx.request.body.mLogin;
+        try{
+            console.log(user)
+            await settingsDAO.userPwd(user);
+            ctx.body = {"code":200,"message":"ok",data:[]}
+        }catch (err) {
+            ctx.body = {"code":500,"message":err.toString(),data:[]}
+        }
+    },
     modOther:async (ctx,next)=>{
         let user = { };
 

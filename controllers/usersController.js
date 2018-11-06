@@ -24,6 +24,23 @@ module.exports = {
 
     }
     ,
+    userPhone:async (ctx,next)=>{
+        let user = { };
+        user.mLogin = ctx.request.body.mLogin;
+        try{
+            let jsondata = await usersDAO.login();
+            for (var i = 0 ; i < jsondata.length ;i++){
+                if(jsondata[i].mLogin == user.mLogin) {
+                    ctx.body = {"code": 200, "message": "ok", data:0};
+                    return;
+                }
+            }
+            ctx.body = {"code": 200, "message": "ok", data:1};
+        }catch (err) {
+            ctx.body = {"code":500,"message":err.toString(),data:[]}
+        }
+
+    },
     login:async (ctx,next)=>{
         const hash = crypto.createHash('md5');
         hash.update(ctx.request.body.mPassword);

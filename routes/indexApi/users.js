@@ -6,10 +6,9 @@ router.post('/',async (ctx,next)=>{
     // ctx.body = '登录，注册';
     await usersController.login(ctx,next)
 });
-// router.get('/useryz',async (ctx,next)=>{
-//     let jsondata = await usersDAO.login();
-//     ctx.body = {"code":200,"message":"ok",data:jsondata};
-// })
+router.post('/userPhone',async (ctx,next)=>{
+    await usersController.userPhone(ctx,next)
+});
 router.post('/add',async (ctx,next)=>{
     await usersController.addUser(ctx,next)
 });

@@ -52,11 +52,11 @@ router.post('/uploadfile', function (ctx, next) {
         // //根据fileds.mydata获取上传表单元素的数据，执行写入数据库的操作
     })
 })
-// if(err){
-//     ctx.body={'code':500,"message":"err"+err.message,data:[]};
-// }
 router.post('/modPwd',async (ctx,next) =>{
     await settingController.modPwd(ctx,next)
+});
+router.post('/userPwd',async (ctx,next) =>{
+    await settingController.userPwd(ctx,next)
 });
 router.post('/modOther',async (ctx,next) =>{
     await settingController.modOther(ctx,next)
